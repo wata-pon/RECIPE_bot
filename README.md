@@ -10,6 +10,13 @@ cd line-bot-basic-sample
 pipenv install
 ```
 
+## Install Heroku CLI for Mac
+- https://devcenter.heroku.com/articles/heroku-cli
+
+```
+brew tap heroku/brew && brew install heroku
+```
+
 ## Create Heroku App
 ```
 heroku login
