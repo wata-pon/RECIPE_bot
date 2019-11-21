@@ -9,7 +9,10 @@ KEY_ID = os.environ['key_id']
 def main():
     freeword = input('検索:')
     response = requests.get(URL, params={'keyid': KEY_ID, 'freeword': freeword})
-    print(response.json()['rest'][0]['name'])
+    for i in range(0, 5):
+        print(response.json()['rest'][i]['name'])
+        print(response.json()['rest'][i]['url'])
+        print(response.json()['rest'][i]['access'])
 
 
 if __name__ == '__main__':
