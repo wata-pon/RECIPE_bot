@@ -21,4 +21,4 @@ def recipe_search(foodword):
     return 'キーワードを入力し直してください'
 
 
-print(type(recipe_search(foodword='')))
+print(recipe_search(''))
