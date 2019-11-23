@@ -8,17 +8,17 @@ params = dict(applicationId='1013818012526051161',
               elements='categoryName,categoryUrl')
 
 
-def recipe_search(freeword):
+def recipe_search(push_text):
     response = requests.get(URL, params)
     content = response.json()['result']['small']
     for recipes in content:
         recipe_name = recipes['categoryName']
         recipe_url = recipes['categoryUrl']
 
-        if freeword in recipe_name:
+        if push_text in recipe_name:
             return recipe_name, recipe_url
 
     return 'キーワードを入力し直してください'
 
 
-print(recipe_search(freeword=''))
+print(recipe_search(''))
