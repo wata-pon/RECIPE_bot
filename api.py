@@ -16,10 +16,9 @@ def recipe_search(foodword):
         recipe_url = recipes['categoryUrl']
 
         if foodword in recipe_name:
-            return 'にく'
-            # return str(recipe_url)
+            return str(recipe_url)
 
     return 'キーワードを入力し直してください'
 
 
-print(type(recipe_search(foodword='肉')))
+print(type(recipe_search(foodword='')))
