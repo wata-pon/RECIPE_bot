@@ -8,7 +8,7 @@ params = dict(applicationId='1013818012526051161',
               elements='categoryName,categoryUrl')
 
 
-def recipe_search(freeword='肉'):
+def recipe_search(freeword):
     response = requests.get(URL, params)
     content = response.json()['result']['small']
     for recipes in content:
@@ -21,4 +21,4 @@ def recipe_search(freeword='肉'):
     return 'キーワードを入力し直してください'
 
 
-print(recipe_search("さんま"))
+print(recipe_search())

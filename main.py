@@ -47,9 +47,9 @@ def handle_message(event):
     push_text = event.message.text
     results = api.recipe_search(push_text)
     line_bot_api.reply_message(event.reply_token,
-                               TextSendMessage(text=results)) \
- \
- \
+                               TextSendMessage(text=results))
+
+
 # @handler.add(MessageEvent, message=TextMessage)
 # def handle_message(event):
 #     line_bot_api.reply_message(event.reply_token,
