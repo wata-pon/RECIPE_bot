@@ -45,7 +45,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     push_text = event.message.text
-    msg = api.recipe_search(push_text)
+    msg = api.recipe_search(foodword=push_text)
     line_bot_api.reply_message(event.reply_token,
                                TextSendMessage(text=msg))
 

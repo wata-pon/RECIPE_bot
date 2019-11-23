@@ -8,17 +8,18 @@ params = dict(applicationId='1013818012526051161',
               elements='categoryName,categoryUrl')
 
 
-def recipe_search(push_text):
+def recipe_search(foodword):
     response = requests.get(URL, params)
     content = response.json()['result']['small']
     for recipes in content:
         recipe_name = recipes['categoryName']
         recipe_url = recipes['categoryUrl']
 
-        if push_text in recipe_name:
-            return recipe_name, recipe_url
+        if foodword in recipe_name:
+            return 'にく'
+            # return str(recipe_url)
 
     return 'キーワードを入力し直してください'
 
 
-print(recipe_search(''))
+print(type(recipe_search(foodword='肉')))
