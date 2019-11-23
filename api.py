@@ -21,4 +21,4 @@ def recipe_search(freeword):
     return 'キーワードを入力し直してください'
 
 
-print(recipe_search())
+print(recipe_search(freeword=''))
