@@ -4,7 +4,9 @@ import os
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, TextSendMessage, StickerSendMessage
+from linebot.models import MessageEvent, TextMessage, TextSendMessage
+
+import api
 
 app = Flask(__name__)
 
@@ -40,16 +42,18 @@ def callback():
     return 'OK'
 
 
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    push_text = event.message.text
+    results = api.recipe_search(push_text)
+    line_bot_api.reply_message(event.reply_token,
+                               TextSendMessage(text=results)) \
+ \
+ \
 # @handler.add(MessageEvent, message=TextMessage)
 # def handle_message(event):
 #     line_bot_api.reply_message(event.reply_token,
-#                                TextSendMessage(text=event.message.text))\
-
-
-@handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    line_bot_api.reply_message(event.reply_token,
-                               StickerSendMessage(package_id='11537', sticker_id='52002735'))
+#                                StickerSendMessage(package_id='11537', sticker_id='52002735'))
 
 
 if __name__ == '__main__':
