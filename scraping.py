@@ -3,19 +3,24 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def recipe_scrap(foodword):
-    url = f'https://recipe.rakuten.co.jp/search/{foodword}'
+def recipe_scrap(foodword, time):
+    url = f'https://recipe.rakuten.co.jp/search/{foodword}/?s=4&v=0&t=2&time={int(time)}'
 
-    res = requests.get(url, foodword)
-    # print(res.url)
+    r = requests.get(url)
+    soup = BeautifulSoup(r.text, 'html.parser')
+    ol_class = soup.find('div', class_='catePopuRank')
+    title_of_rank1 = ol_class.find_all('a')[0].find('img').get('alt')
+    title_of_rank2 = ol_class.find_all('a')[1].find('img').get('alt')
+    title_of_rank3 = ol_class.find_all('a')[2].find('img').get('alt')
 
-    con = res.content
-    soup = BeautifulSoup(con, 'html.parser')
-    aaa = soup.find_all('ol', class_="clearfix")
-    for items in aaa:
-        access = items.div.a['href']
-        # image = access.item.find('div', )
-        print(access)
+    href_of_rank1 = ol_class.find_all('a')[0].get('href')
+    href_of_rank2 = ol_class.find_all('a')[1].get('href')
+    href_of_rank3 = ol_class.find_all('a')[2].get('href')
+
+    src_of_rank1 = ol_class.find_all('a')[0].find('img').get('src')
+    src_of_rank2 = ol_class.find_all('a')[1].find('img').get('src')
+    src_of_rank3 = ol_class.find_all('a')[2].find('img').get('src')
+    print(src_of_rank3)
 
 
-recipe_scrap('さんま')
+recipe_scrap('さんま', 1)
