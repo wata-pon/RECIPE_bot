@@ -4,8 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def recipe_scraping(foodword, time):
-    url = f'https://recipe.rakuten.co.jp/search/{foodword}/?s=4&v=0&t=2&time={int(time)}'
+def recipe_scraping(url):
 
     r = requests.get(url)
     soup = BeautifulSoup(r.text, 'html.parser')
@@ -26,6 +25,11 @@ def recipe_scraping(foodword, time):
     url_of_rank1 = urllib.parse.urljoin(url, href_of_rank1)
     url_of_rank2 = urllib.parse.urljoin(url, href_of_rank2)
     url_of_rank3 = urllib.parse.urljoin(url, href_of_rank3)
+
+    rank1 = title_of_rank1, url_of_rank1, src_of_rank1
+    rank2 = title_of_rank2, url_of_rank2, src_of_rank2
+    rank3 = title_of_rank3, url_of_rank3, src_of_rank3
+
     print(title_of_rank1)
     print(url_of_rank1)
     print(src_of_rank1)
@@ -37,4 +41,6 @@ def recipe_scraping(foodword, time):
     print(src_of_rank3)
 
 
-recipe_scraping('さんま', 1)
+if __name__ == '__main__':
+    msg = recipe_scraping('https://recipe.rakuten.co.jp/search/さんま')
+    print(msg)

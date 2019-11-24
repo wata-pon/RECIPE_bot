@@ -7,6 +7,7 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
 import api
+import scraping
 
 app = Flask(__name__)
 
@@ -45,7 +46,8 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     push_text = event.message.text
-    msg = api.recipe_search(foodword=push_text)
+    url = api.recipe_search(foodword=push_text)
+    msg = scraping.recipe_scraping(url)
     line_bot_api.reply_message(event.reply_token,
                                TextSendMessage(text=msg))
 

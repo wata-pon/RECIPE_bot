@@ -26,4 +26,5 @@ def recipe_rank():
     pass
 
 
-print(recipe_search(''))
+if __name__ == '__main__':
+    print(recipe_search(''))
