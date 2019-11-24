@@ -30,15 +30,15 @@ def recipe_scraping(url):
     rank2 = title_of_rank2, url_of_rank2, src_of_rank2
     rank3 = title_of_rank3, url_of_rank3, src_of_rank3
 
-    print(title_of_rank1)
-    print(url_of_rank1)
-    print(src_of_rank1)
-    print(title_of_rank2)
-    print(url_of_rank2)
-    print(src_of_rank2)
-    print(title_of_rank3)
-    print(url_of_rank3)
-    print(src_of_rank3)
+    # print(title_of_rank1)
+    # print(url_of_rank1)
+    # print(src_of_rank1)
+    # print(title_of_rank2)
+    # print(url_of_rank2)
+    # print(src_of_rank2)
+    # print(title_of_rank3)
+    # print(url_of_rank3)
+    # print(src_of_rank3)
 
 
 if __name__ == '__main__':
