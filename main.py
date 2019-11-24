@@ -50,10 +50,10 @@ def handle_message(event):
                                TextSendMessage(text=msg))
 
 
-# @handler.add(MessageEvent, message=TextMessage)
-# def handle_message(event):
-#     line_bot_api.reply_message(event.reply_token,
-#                                StickerSendMessage(package_id='11537', sticker_id='52002735'))
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    line_bot_api.reply_message(event.reply_token,
+                               StickerSendMessage(package_id='11537', sticker_id='52002735'))
 
 
 if __name__ == '__main__':
