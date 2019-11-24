@@ -42,5 +42,4 @@ def recipe_scraping(url):
 
 
 if __name__ == '__main__':
-    msg = recipe_scraping('https://recipe.rakuten.co.jp/search/さんま')
-    print(msg)
+    recipe_scraping('')
