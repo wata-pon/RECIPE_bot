@@ -1,5 +1,6 @@
-import requests
+import urllib.parse
 
+import requests
 from bs4 import BeautifulSoup
 
 
@@ -21,14 +22,18 @@ def recipe_scraping(foodword, time):
     src_of_rank1 = popular_recipe_top3.find_all('a')[0].find('img').get('src')
     src_of_rank2 = popular_recipe_top3.find_all('a')[1].find('img').get('src')
     src_of_rank3 = popular_recipe_top3.find_all('a')[2].find('img').get('src')
+
+    url_of_rank1 = urllib.parse.urljoin(url, href_of_rank1)
+    url_of_rank2 = urllib.parse.urljoin(url, href_of_rank2)
+    url_of_rank3 = urllib.parse.urljoin(url, href_of_rank3)
     print(title_of_rank1)
-    print(href_of_rank1)
+    print(url_of_rank1)
     print(src_of_rank1)
     print(title_of_rank2)
-    print(href_of_rank2)
+    print(url_of_rank2)
     print(src_of_rank2)
     print(title_of_rank3)
-    print(href_of_rank3)
+    print(url_of_rank3)
     print(src_of_rank3)
 
 
