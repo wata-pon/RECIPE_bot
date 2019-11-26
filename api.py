@@ -1,5 +1,7 @@
 import requests
 
+import scraping
+
 
 def recipe_search(foodword):
     url = 'https://app.rakuten.co.jp/services/api/Recipe/CategoryList/20170426'
@@ -17,7 +19,7 @@ def recipe_search(foodword):
         recipe_url = recipes['categoryUrl']
 
         if foodword in recipe_name:
-            return recipe_url
+            return scraping.recipe_scraping(recipe_url)
 
     return 'キーワードを入力し直してください'
 
@@ -27,4 +29,4 @@ def recipe_rank():
 
 
 if __name__ == '__main__':
-    print(recipe_search(''))
+    print(recipe_search('さんま'))
