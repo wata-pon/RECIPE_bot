@@ -4,9 +4,11 @@ import os
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, TextSendMessage
+from linebot.models import MessageEvent, TextMessage, TextSendMessage, TemplateSendMessage, CarouselTemplate, \
+    CarouselColumn
 
-import api
+# import api
+# import scraping
 
 app = Flask(__name__)
 
@@ -44,16 +46,29 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    push_text = event.message.text
-    msg = api.recipe_search(foodword=push_text)
-    line_bot_api.reply_message(event.reply_token,
-                               TextSendMessage(text=msg))
+    notes = [CarouselColumn(image="https://renttle.jp/static/img/renttle02.jpg",
+                            title="【ReleaseNote】トークルームを実装しました。",
+                            url="https://renttle.jp/notes/kota/7"),
 
+             CarouselColumn(image="https://renttle.jp/static/img/renttle03.jpg",
+                            title="ReleaseNote】創作中の活動を報告する機能を追加しました。",
+                            url="https://renttle.jp/notes/kota/6"),
 
-# @handler.add(MessageEvent, message=TextMessage)
-# def handle_message(event):
-#     line_bot_api.reply_message(event.reply_token,
-#                                StickerSendMessage(package_id='11537', sticker_id='52002735'))
+             CarouselColumn(image="https://renttle.jp/static/img/renttle04.jpg",
+                            title="【ReleaseNote】タグ機能を追加しました。",
+                            url="https://renttle.jp/notes/kota/5")]
+    messages = TemplateSendMessage(
+        alt_text='template',
+        template=CarouselTemplate(columns=notes),
+    )
+
+    line_bot_api.reply_message(event.reply_token, messages=messages)
+
+    # push_text = event.message.text
+    # msg = api.recipe_search(foodword=push_text)
+    # line_bot_api.reply_message(event.reply_token,
+    #                            TextSendMessage(text=msg))
+
 
 
 if __name__ == '__main__':

@@ -6,6 +6,7 @@ def recipe_scraping(url):
     r = requests.get(url)
     soup = BeautifulSoup(r.text, 'html.parser')
     recipe_top3 = soup.find('div', class_='catePopuRank')
+
     recipes_rank = []
 
     for tag in recipe_top3.find_all('a'):
@@ -18,7 +19,9 @@ def recipe_scraping(url):
 
         except:
             pass
+
     return recipes_rank
 
+
 if __name__ == '__main__':
-    recipe_scraping('https://recipe.rakuten.co.jp/search/とまと')
+    print(recipe_scraping('https://recipe.rakuten.co.jp/search/とまと'))
