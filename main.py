@@ -46,17 +46,33 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    notes = [CarouselColumn(image="https://renttle.jp/static/img/renttle02.jpg",
+    notes = [CarouselColumn(thumbnail_image_url="https://renttle.jp/static/img/renttle02.jpg",
                             title="【ReleaseNote】トークルームを実装しました。",
-                            url="https://renttle.jp/notes/kota/7"),
+                            text="creation(創作中・考え中の何かしらのモノ・コト)に関して、意見を聞けるようにトークルーム機能を追加しました。",
+                            actions=[
+                                {"type": "message",
+                                 "label": "サイトURL",
+                                 "text": "https://renttle.jp/notes/kota/7"}
+                            ]),
 
-             CarouselColumn(image="https://renttle.jp/static/img/renttle03.jpg",
+             CarouselColumn(thumbnail_image_url="https://renttle.jp/static/img/renttle03.jpg",
                             title="ReleaseNote】創作中の活動を報告する機能を追加しました。",
-                            url="https://renttle.jp/notes/kota/6"),
+                            text="創作中や考え中の時点の活動を共有できる機能を追加しました。",
+                            actions=[
+                                {"type": "message",
+                                 "label": "サイトURL",
+                                 "text": "https://renttle.jp/notes/kota/6"}
+                            ]),
 
-             CarouselColumn(image="https://renttle.jp/static/img/renttle04.jpg",
+             CarouselColumn(thumbnail_image_url="https://renttle.jp/static/img/renttle04.jpg",
                             title="【ReleaseNote】タグ機能を追加しました。",
-                            url="https://renttle.jp/notes/kota/5")]
+                            text="「イベントを作成」「記事を投稿」「本を登録」にタグ機能を追加しました。",
+                            actions=[
+                                {"type": "message",
+                                 "label": "サイトURL",
+                                 "text": "https://renttle.jp/notes/kota/5"}]
+                            )]
+
     messages = TemplateSendMessage(
         alt_text='template',
         template=CarouselTemplate(columns=notes),
