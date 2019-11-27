@@ -9,8 +9,6 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage, TemplateS
 
 import scraping
 
-rank = scraping.recipe_scraping('')
-
 app = Flask(__name__)
 
 line_bot_api = LineBotApi(os.environ['ACCESS_TOKEN'])
@@ -47,25 +45,30 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    notes = [CarouselColumn(image_url=rank[0]['img'],
-                            title=rank[0]['title'],
-                            actions=[{"type": "message", "label": "CLICK!", "text": rank[0]['url']}]),
+    if event.message.text == 'foodword':
+        rank = scraping.recipe_scraping('')
 
-             CarouselColumn(thumbnail_image_url=rank[1]['img'],
-                            title=rank[1]['title'],
-                            actions=[{"type": "message", "label": "CLICK!", "text": rank[1]['url']}]),
+        notes = [CarouselColumn(image_url=rank[0]['img'],
+                                title=rank[0]['title'],
+                                actions=[{"type": "message", "label": "CLICK!", "text": rank[0]['url']}]),
 
-             CarouselColumn(thumbnail_image_url=rank[2]['img'],
-                            title=rank[2]['title'],
-                            actions=[{"type": "message", "label": "CLICK!", "text": rank[2]['url']}])
-             ]
+                 CarouselColumn(thumbnail_image_url=rank[1]['img'],
+                                title=rank[1]['title'],
+                                actions=[{"type": "message", "label": "CLICK!", "text": rank[1]['url']}]
+                                ),
 
-    messages = TemplateSendMessage(
-        alt_text='template',
-        template=CarouselTemplate(columns=notes),
-    )
+                 CarouselColumn(thumbnail_image_url=rank[2]['img'],
+                                title=rank[2]['title'],
+                                actions=[{"type": "message", "label": "CLICK!", "text": rank[2]['url']}]
+                                )
+                 ]
 
-    line_bot_api.reply_message(event.reply_token, messages=messages)
+        messages = TemplateSendMessage(
+            alt_text='template',
+            template=CarouselTemplate(columns=notes),
+        )
+
+        line_bot_api.reply_message(event.reply_token, messages=messages)
 
     # push_text = event.message.text
     # msg = api.recipe_search(foodword=push_text)
