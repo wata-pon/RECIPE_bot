@@ -7,7 +7,6 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, TemplateSendMessage, CarouselTemplate, \
     CarouselColumn
 
-import api
 import scraping
 
 rank = scraping.recipe_scraping('')
@@ -64,11 +63,9 @@ def handle_message(event):
     messages = TemplateSendMessage(
         alt_text='template',
         template=CarouselTemplate(columns=notes),
-
     )
-    push_text = event.message.text,
-    api.recipe_search(push_text)
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(messages=messages))
+
+    line_bot_api.reply_message(event.reply_token, messages=messages)
 
     # push_text = event.message.text
     # msg = api.recipe_search(foodword=push_text)
