@@ -7,6 +7,7 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, TemplateSendMessage, CarouselTemplate, \
     CarouselColumn
 
+import api
 import scraping
 
 app = Flask(__name__)
@@ -46,11 +47,13 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     if event.message.text == 'foodword':
-        rank = scraping.recipe_scraping('')
+        url = api.recipe_search(event.message.text)
+        rank = scraping.recipe_scraping(url)
 
         notes = [CarouselColumn(image_url=rank[0]['img'],
                                 title=rank[0]['title'],
-                                actions=[{"type": "message", "label": "CLICK!", "text": rank[0]['url']}]),
+                                actions=[{"type": "message", "label": "CLICK!", "text": rank[0]['url']}]
+                                ),
 
                  CarouselColumn(thumbnail_image_url=rank[1]['img'],
                                 title=rank[1]['title'],
