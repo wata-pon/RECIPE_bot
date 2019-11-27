@@ -52,17 +52,23 @@ def handle_message(event):
 
         notes = [CarouselColumn(image_url=rank[0]['img'],
                                 title=rank[0]['title'],
-                                actions=[{"type": "message", "label": "CLICK!", "text": rank[0]['url']}]
+                                actions=[{"type": "message",
+                                          "label": "CLICK!",
+                                          "text": rank[0]['url']}]
                                 ),
 
                  CarouselColumn(thumbnail_image_url=rank[1]['img'],
                                 title=rank[1]['title'],
-                                actions=[{"type": "message", "label": "CLICK!", "text": rank[1]['url']}]
+                                actions=[{"type": "message",
+                                          "label": "CLICK!",
+                                          "text": rank[1]['url']}]
                                 ),
 
                  CarouselColumn(thumbnail_image_url=rank[2]['img'],
                                 title=rank[2]['title'],
-                                actions=[{"type": "message", "label": "CLICK!", "text": rank[2]['url']}]
+                                actions=[{"type": "message",
+                                          "label": "CLICK!",
+                                          "text": rank[2]['url']}]
                                 )
                  ]
 
