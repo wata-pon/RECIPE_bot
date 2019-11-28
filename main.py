@@ -70,6 +70,8 @@ def handle_message(event):
 
         line_bot_api.reply_message(event.reply_token,
                                    TextSendMessage(messages=messages))
+    else:
+        print('hoge')
 
     # push_text = event.message.text
     # msg = api.recipe_search(foodword=push_text)
