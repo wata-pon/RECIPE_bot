@@ -1,7 +1,6 @@
 import requests
 
 
-
 def recipe_search(foodword):
     url = 'https://app.rakuten.co.jp/services/api/Recipe/CategoryList/20170426'
 
