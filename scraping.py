@@ -20,7 +20,7 @@ def recipe_scraping(url):
         except:
             pass
 
-    return recipes_rank[0]['img']
+    return recipes_rank
 
 
 if __name__ == '__main__':

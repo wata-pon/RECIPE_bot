@@ -1,6 +1,5 @@
 import requests
 
-import scraping
 
 
 def recipe_search(foodword):
@@ -19,7 +18,7 @@ def recipe_search(foodword):
         recipe_url = recipes['categoryUrl']
 
         if foodword in recipe_name:
-            return scraping.recipe_scraping(recipe_url)
+            return recipe_url
 
     return 'キーワードを入力し直してください'
 
