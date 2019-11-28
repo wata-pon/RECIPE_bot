@@ -64,7 +64,7 @@ def handle_message(event):
                  ]
 
         messages = TemplateSendMessage(
-            alt_text='template',
+            alt_text='Carousel template',
             template=CarouselTemplate(columns=notes),
         )
 
