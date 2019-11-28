@@ -46,7 +46,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     push_text = event.message.text
-    url = api.recipe_search(foodword=push_text)
+    url = api.recipe_search(push_text)
     rank = scraping.recipe_scraping(url)
 
     notes = [CarouselColumn(thumbnail_image_url=rank[0]['img'],
