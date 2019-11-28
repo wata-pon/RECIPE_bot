@@ -20,8 +20,8 @@ def recipe_scraping(url):
         except:
             pass
 
-    return recipes_rank
+    return recipes_rank[0]['img']
 
 
 if __name__ == '__main__':
-    print(recipe_scraping('https://recipe.rakuten.co.jp/search/とまと')[0]['img'])
+    print(recipe_scraping('https://recipe.rakuten.co.jp/search/とまと'))

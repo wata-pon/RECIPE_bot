@@ -29,4 +29,4 @@ def recipe_rank():
 
 
 if __name__ == '__main__':
-    print(recipe_search('トマト'))
+    print(recipe_search('肉'))

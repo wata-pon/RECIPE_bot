@@ -5,7 +5,7 @@ from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, TemplateSendMessage, CarouselTemplate, \
-    CarouselColumn
+    CarouselColumn, URIAction
 
 import api
 import scraping
@@ -50,26 +50,17 @@ def handle_message(event):
         url = api.recipe_search(event.message.text)
         rank = scraping.recipe_scraping(url)
 
-        notes = [CarouselColumn(image_url=rank[0]['img'],
+        notes = [CarouselColumn(thumbnail_image_url=rank[0]['img'],
                                 title=rank[0]['title'],
-                                actions=[{"type": "message",
-                                          "label": "CLICK!",
-                                          "text": rank[0]['url']}]
-                                ),
+                                actions=[URIAction(label="CLICK!", uri=rank[0]['url'])]),
 
                  CarouselColumn(thumbnail_image_url=rank[1]['img'],
                                 title=rank[1]['title'],
-                                actions=[{"type": "message",
-                                          "label": "CLICK!",
-                                          "text": rank[1]['url']}]
-                                ),
+                                actions=[URIAction(label="CLICK!", uri=rank[1]['url'])]),
 
                  CarouselColumn(thumbnail_image_url=rank[2]['img'],
                                 title=rank[2]['title'],
-                                actions=[{"type": "message",
-                                          "label": "CLICK!",
-                                          "text": rank[2]['url']}]
-                                )
+                                actions=[URIAction(label="CLICK!", uri=rank[2]['url'])]),
                  ]
 
         messages = TemplateSendMessage(
