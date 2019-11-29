@@ -22,9 +22,5 @@ def recipe_search(foodword):
     return 'キーワードを入力し直してください'
 
 
-def recipe_rank():
-    pass
-
-
 if __name__ == '__main__':
-    print(recipe_search('肉'))
+    print(recipe_search('白菜'))

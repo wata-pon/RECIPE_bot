@@ -45,25 +45,25 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    push_text = event.message.text
-    url = api.recipe_search(push_text)
+    text = event.message.text
+    url = api.recipe_search(text)
     rank = scraping.recipe_scraping(url)
 
     messages = TemplateSendMessage(
         alt_text='Carousel template',
-        template=CarouselTemplate(columns=
-                                  [CarouselColumn(thumbnail_image_url=rank[0]['img'],
-                                                  title=rank[0]['title'],
-                                                  actions=[URIAction(label="CLICK!", uri=rank[0]['url'])]),
+        carousel_template=CarouselTemplate(columns=
+                                           [CarouselColumn(thumbnail_image_url=rank[0]['img'],
+                                                           title=rank[0]['title'],
+                                                           actions=[URIAction(label="CLICK!", uri=rank[0]['url'])]),
 
-                                   CarouselColumn(thumbnail_image_url=rank[1]['img'],
-                                                  title=rank[1]['title'],
-                                                  actions=[URIAction(label="CLICK!", uri=rank[1]['url'])]),
+                                            CarouselColumn(thumbnail_image_url=rank[1]['img'],
+                                                           title=rank[1]['title'],
+                                                           actions=[URIAction(label="CLICK!", uri=rank[1]['url'])]),
 
-                                   CarouselColumn(thumbnail_image_url=rank[2]['img'],
-                                                  title=rank[2]['title'],
-                                                  actions=[URIAction(label="CLICK!", uri=rank[2]['url'])]),
-                                   ])
+                                            CarouselColumn(thumbnail_image_url=rank[2]['img'],
+                                                           title=rank[2]['title'],
+                                                           actions=[URIAction(label="CLICK!", uri=rank[2]['url'])]),
+                                            ])
     )
 
     line_bot_api.reply_message(event.reply_token,
